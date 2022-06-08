@@ -1,10 +1,17 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import authReducer from '../slices/authSlice';
+import userReducer from '../slices/userSlice';
+import sharedReducer from '../slices/sharedSlice';
+import questionReducer from '../slices/questionSlice';
+
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-  },
+    auth: authReducer,
+    user: userReducer,
+    shared: sharedReducer,
+    question: questionReducer
+  }
 });
 
 export type AppDispatch = typeof store.dispatch;
