@@ -1,8 +1,8 @@
 let users = {
   sarahedo: {
     id: 'sarahedo',
-    name: 'Sarah Edo',
-    avatarURL: '',
+    name: 'Tan David',
+    avatarURL: 'https://res.cloudinary.com/dmtopd6ps/image/upload/v1653097897/icz8jelfkp9zrvegdr6d.jpg',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -14,7 +14,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: '',
+    avatarURL: 'https://res.cloudinary.com/dmtopd6ps/image/upload/v1649317981/giay_da_bong_tre_em_jiaeiu.jpg',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: '',
+    avatarURL: 'https://res.cloudinary.com/dmtopd6ps/image/upload/v1649318125/2f7644dd48eb55a4e3d9fcf896d2a0bb_lzx58k.png',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -195,6 +195,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
           }
         }
       }
+      console.log(users[authedUser]);
 
       res()
     }, 500)
