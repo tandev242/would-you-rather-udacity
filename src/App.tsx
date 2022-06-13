@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RootState } from './app/store';
 import NewPoll from './components/NewPoll';
 import LeaderBoard from './components/LeaderBoard';
-import PollQuestion from './components/PollQuestion';
+import PollPage from './components/PollPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -36,7 +36,7 @@ function App() {
                 <Route path="/" element={<Home user={getUserById()} />} />
                 <Route path="/add" element={<NewPoll user={getUserById()} />} />
                 <Route path="/leader-board" element={<LeaderBoard />} />
-                <Route path="/questions/:id" element={<PollQuestion user={getUserById()} />} />
+                <Route path="/questions/:id" element={<PollPage user={getUserById()} />} />
               </Routes>
             </>
           ) : <Login />

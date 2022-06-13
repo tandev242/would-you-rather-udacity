@@ -24,11 +24,17 @@ type LocationState = {
     question: Question
 }
 
-export default function PollQuestion({ user }: { user: User }) {
+type PropsType = {
+    user: User,
+    question: Question,
+    author: User,
+    setIsAnswered: Function
+}
+
+export default function PollQuestion(props: PropsType) {
+    const { user, author, question, setIsAnswered } = props;
     const [option, setOption] = useState('');
-    const location = useLocation();
     const dispatch = useAppDispatch();
-    const { question, author } = location.state as LocationState;
 
     const handleAnswerPoll = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -39,6 +45,7 @@ export default function PollQuestion({ user }: { user: User }) {
                 answer: option
             }
             dispatch(handleSaveQuestionAnswer(payload));
+            setIsAnswered(true);
         }
     }
 
