@@ -1,11 +1,32 @@
 # Would You Rather Project
+![image](https://user-images.githubusercontent.com/58477197/173854927-1b4a2276-d873-45cd-8555-c703ea6f306d.png)
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+### Prerequisites
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+NPM / Yarn and Node.js installed
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+### Installing
+Execute these commands from the project directory
+```
+  npm install 
+```
+After completing the above step, continue
+```
+  npm start
+```
+### Built With
 
+* [Typescript](https://www.typescriptlang.org)
+* [React JS](https://reactjs.org/)
+* [Redux toolkit](https://redux-toolkit.js.org)
+* [Matterial UI](https://mui.com)
+* [React router v6](https://reactrouter.com)
+
+### Components 
+![image](https://user-images.githubusercontent.com/58477197/173858430-0100587c-4b4d-400f-8f8b-6666676c6bc6.png)
+
+
+# More Details
 ## Data
 
 There are two types of objects stored in our database:
