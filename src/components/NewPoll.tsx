@@ -4,13 +4,12 @@ import {
     Card,
     CardHeader,
     CardContent,
-    Divider
+    Typography,
+    FormControl,
+    Button,
+    TextField,
+    FormLabel
 } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import FormControl from '@mui/material/FormControl';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormLabel from '@mui/material/FormLabel';
 import { useAppDispatch } from '../app/hooks';
 import { handleSaveQuestion } from '../slices/questionSlice';
 import { User } from '../constants';
@@ -36,7 +35,6 @@ export default function NewPoll({ user }: { user: User }) {
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
             <Card sx={{ m: 3, width: 500 }}>
                 <CardHeader sx={{ backgroundColor: 'cyan' }} title="Create a New Poll" />
-                <Divider />
                 <CardContent>
                     <Typography variant="subtitle1" component="div">
                         Complete the question:

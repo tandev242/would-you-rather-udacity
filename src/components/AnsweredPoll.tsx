@@ -1,21 +1,21 @@
-import React, { useState } from "react";
 import {
     Box,
     Card,
     CardHeader,
     Button,
     CardContent,
-    Typography,
-    Divider
+    Typography
 } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { DEFAULT_IMAGE, User } from '../constants';
+import { useNavigate } from 'react-router-dom';
 
 export default function AnsweredPoll({ question, author }: { question: any, author: User }) {
+    const navigate = useNavigate();
+
     return (
         <Card sx={{ width: '100%', mb: 2 }}>
             <CardHeader sx={{ backgroundColor: '#DCDCEA' }} title={`${author?.name || 'No name'} asks:`} />
-            <Divider />
             <CardContent sx={{ display: 'flex' }}>
                 <Avatar
                     sx={{ width: 150, height: 150, mr: 2 }}
@@ -33,6 +33,7 @@ export default function AnsweredPoll({ question, author }: { question: any, auth
                     </Typography>
                     <Button
                         fullWidth
+                        onClick={() => navigate(`/questions/${question.id}`)}
                         variant="contained">
                         Result
                     </Button>

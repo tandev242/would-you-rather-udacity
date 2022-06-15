@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import './App.css';
-import { useAppDispatch } from './app/hooks';
+import { useAppDispatch, useAppSelector } from './app/hooks';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
@@ -11,11 +10,13 @@ import { RootState } from './app/store';
 import NewPoll from './components/NewPoll';
 import LeaderBoard from './components/LeaderBoard';
 import PollPage from './components/PollPage';
+import NotFound from './components/NotFound';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const dispatch = useAppDispatch();
-  const { isAuthed, userId } = useSelector((state: RootState) => state.auth);
-  const { users } = useSelector((state: RootState) => state.user);
+  const { isAuthed, userId } = useAppSelector((state: RootState) => state.auth);
+  const { users } = useAppSelector((state: RootState) => state.user);
 
   const getUserById = () => {
     return Object.values(users).find(user => user.id === userId);
@@ -29,18 +30,15 @@ function App() {
     <Router>
       <div className="App">
         {
-          isAuthed ? (
-            <>
-              <NavBar user={getUserById()} />
-              <Routes>
-                <Route path="/" element={<Home user={getUserById()} />} />
-                <Route path="/add" element={<NewPoll user={getUserById()} />} />
-                <Route path="/leader-board" element={<LeaderBoard />} />
-                <Route path="/questions/:id" element={<PollPage user={getUserById()} />} />
-              </Routes>
-            </>
-          ) : <Login />
+          isAuthed && <NavBar user={getUserById()} />
         }
+        <Routes>
+          <Route path="/" element={isAuthed ? <Home user={getUserById()} /> : <Login />} />
+          <Route path="/add" element={<PrivateRoute element={<NewPoll user={getUserById()} />} />} />
+          <Route path="/leader-board" element={<PrivateRoute element={<LeaderBoard />} />} />
+          <Route path="/questions/:id" element={<PrivateRoute element={<PollPage user={getUserById()} />} />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </div>
     </Router>
   );

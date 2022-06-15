@@ -27,7 +27,6 @@ export const handleSaveQuestionAnswer = createAsyncThunk(
   'question/saveQuestionAnswer',
   async (payload: any, thunkAPI) => {
     await API.saveQuestionAnswer(payload);
-    console.log(payload);
     thunkAPI.dispatch(handleInitialData());
   }
 );

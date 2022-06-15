@@ -6,7 +6,7 @@ import {
     Divider,
     Typography,
     CardHeader,
-    Grid,
+    Grid
 } from '@mui/material';
 import { useAppSelector } from '../app/hooks';
 import { RootState } from '../app/store';
@@ -30,7 +30,7 @@ export default function LeaderBoard() {
         <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
             {
                 getLeaderBoard().map((user, index) =>
-                    <Card sx={{ m: 2, width: 700 }}>
+                    <Card key={index} sx={{ m: 2, width: 700 }}>
                         <CardContent sx={{ display: 'flex' }}>
                             <Box sx={{ mr: 2, flex: 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly'}}>
                                 <Typography variant="h3" sx={{ mb: 2}}>
@@ -44,7 +44,7 @@ export default function LeaderBoard() {
                                 />
                             </Box>
                             <Grid item xs={6} md={8} sx={{ flex: 2, borderRight: 1, borderLeft: 1, borderColor: 'grey.500', p: 2 }}>
-                                <Typography variant="h6" sx={{ mb: 2 }}>
+                                <Typography variant="h5" sx={{ mb: 2 }}>
                                     {user.name}
                                 </Typography>
                                 <Box sx={{ mb: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

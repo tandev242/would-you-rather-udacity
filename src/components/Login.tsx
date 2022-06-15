@@ -1,18 +1,19 @@
 import * as React from 'react';
-import { useAppSelector, useAppDispatch } from '../app/hooks';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { ThemeProvider } from '@mui/material/styles';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  Box,
+  Typography,
+  Container,
+  OutlinedInput,
+  InputLabel,
+  MenuItem,
+  FormControl
+} from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useAppSelector, useAppDispatch } from '../app/hooks';
+import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { RootState } from '../app/store';
 import { DEFAULT_LOGIN_IMAGE } from '../constants';
 import { setUserAuthed } from '../slices/authSlice';
@@ -34,6 +35,7 @@ export default function Login() {
     event.preventDefault();
     if(selectedUser.id){
       dispatch(setUserAuthed(selectedUser.id));
+
     }else{
       alert("Please select a friend !")
     }

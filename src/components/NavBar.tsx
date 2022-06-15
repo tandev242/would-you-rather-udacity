@@ -1,10 +1,12 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Button from '@mui/material/Button';
+import {
+    Box,
+    Tabs,
+    Tab,
+    Button,
+    Avatar
+} from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Avatar from '@mui/material/Avatar';
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from '../app/hooks';
 import { logout } from '../slices/authSlice';

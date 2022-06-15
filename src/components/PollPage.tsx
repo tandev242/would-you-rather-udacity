@@ -1,50 +1,46 @@
-import React, { useState } from "react";
-import {
-    Box,
-    Card,
-    CardHeader,
-    Button,
-    CardContent,
-    Typography,
-    RadioGroup,
-    FormControlLabel,
-    FormControl,
-    Radio,
-    Divider
-} from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import { DEFAULT_IMAGE, User, Question } from '../constants';
-import { handleSaveQuestionAnswer } from '../slices/questionSlice';
-import { useLocation } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { Box } from '@mui/material';
+import { User, Question } from '../constants';
+import { useParams } from 'react-router-dom';
+import { useAppSelector } from "../app/hooks";
 import { RootState } from "../app/store";
 import PollQuestion from "./PollQuestion";
 import PollResult from "./PollResult";
-
-type LocationState = {
-    author: User,
-    question: Question
-}
+import NotFound from "./NotFound";
 
 export default function PollPage({ user }: { user: User }) {
-    const [isAnswered, setIsAnswered] = useState(false);
-    const location = useLocation();
-    const { question, author } = location.state as LocationState;
+    const { questions } = useAppSelector((state: RootState) => state.question);
+    const { users } = useAppSelector((state: RootState) => state.user);
+    const { id } = useParams();
+
+    const getQuestionById = (id: string): Question => {
+        const question: any = questions[id as keyof Object];
+        return question;
+    }
+
+    const getAuthorById = (id: string): User => {
+        const question = getQuestionById(id);
+        const author: any = users[question.author as keyof Object];
+        return author;
+    }
+
+    if (!(id && getQuestionById(id))) {
+        return <NotFound />;
+    }
 
     return (
         <Box sx={{ width: 600, display: 'flex', justifyContent: 'center' }}>
             {
-                isAnswered ?
-                    (<PollResult 
-                        user={user} 
-                        author={author} 
-                        question={question} />)
+                user.answers[id as keyof Object] ?
+                    (<PollResult
+                        user={user}
+                        author={getAuthorById(id)}
+                        question={getQuestionById(id)}
+                    />)
                     :
                     (<PollQuestion
                         user={user}
-                        author={author}
-                        question={question}
-                        setIsAnswered={setIsAnswered}
+                        author={getAuthorById(id)}
+                        question={getQuestionById(id)}
                     />)
             }
         </Box>

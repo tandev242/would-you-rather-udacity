@@ -10,29 +10,21 @@ import {
     FormControlLabel,
     FormControl,
     Radio,
-    Divider
+    Divider,
+    Avatar
 } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import { DEFAULT_IMAGE, User, Question } from '../constants';
+import { User, Question } from '../constants';
 import { handleSaveQuestionAnswer } from '../slices/questionSlice';
-import { useLocation } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { RootState } from "../app/store";
-
-type LocationState = {
-    author: User,
-    question: Question
-}
+import { useAppDispatch } from "../app/hooks";
 
 type PropsType = {
     user: User,
     question: Question,
-    author: User,
-    setIsAnswered: Function
+    author: User
 }
 
 export default function PollQuestion(props: PropsType) {
-    const { user, author, question, setIsAnswered } = props;
+    const { user, author, question } = props;
     const [option, setOption] = useState('');
     const dispatch = useAppDispatch();
 
@@ -45,19 +37,17 @@ export default function PollQuestion(props: PropsType) {
                 answer: option
             }
             dispatch(handleSaveQuestionAnswer(payload));
-            setIsAnswered(true);
         }
     }
 
     return (
         <Box sx={{ width: 600, display: 'flex', justifyContent: 'center' }}>
             <Card sx={{ width: '100%', m: 2 }}>
-                <CardHeader sx={{ backgroundColor: '#DCDCEA' }} title={`${author?.name || 'No name'} asks:`} />
-                <Divider />
+                <CardHeader sx={{ backgroundColor: '#DCDCEA' }} title={`${author?.name} asks:`} />
                 <CardContent sx={{ display: 'flex' }}>
                     <Avatar
                         sx={{ width: 150, height: 150, mr: 2 }}
-                        src={author?.avatarURL || DEFAULT_IMAGE}
+                        src={author?.avatarURL}
                     />
                     <FormControl onSubmit={handleAnswerPoll} component='form' sx={{ display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'space-between' }}>
                         <Typography variant="subtitle1" sx={{ fontWeight: '600' }}>
