@@ -4,18 +4,15 @@ import { addQuestionToUser } from './userSlice';
 import { handleInitialData } from './sharedSlice';
 export interface QuestionState {
   questions: Object;
-  isLoading: Boolean;
 }
 
 const initialState: QuestionState = {
-  questions: {
-  },
-  isLoading: false,
+  questions: {}
 };
 
 export const handleSaveQuestion = createAsyncThunk(
   'question/saveQuestion',
-  async (payload: Object, thunkAPI) => {
+  async (payload: any, thunkAPI) => {
     const newQuestion = await API.saveQuestion(payload);
     const { id, author } = newQuestion;
     thunkAPI.dispatch(addQuestionToUser({ id, author }));
@@ -41,17 +38,10 @@ export const QuestionSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(handleSaveQuestion.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(handleSaveQuestion.fulfilled, (state, action: PayloadAction<any>) => {
-        state.isLoading = false;
         const question = action.payload;
         state.questions = { ...state.questions, [question.id]: question }
       })
-      .addCase(handleSaveQuestion.rejected, (state) => {
-        state.isLoading = false;
-      });
   },
 });
 

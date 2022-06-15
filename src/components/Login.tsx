@@ -35,7 +35,6 @@ export default function Login() {
     event.preventDefault();
     if(selectedUser.id){
       dispatch(setUserAuthed(selectedUser.id));
-
     }else{
       alert("Please select a friend !")
     }

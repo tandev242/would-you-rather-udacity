@@ -6,7 +6,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { NOT_FOUND_IMAGE } from '../constants'
 
-
 export default function NotFound() {
     const navigate = useNavigate();
 

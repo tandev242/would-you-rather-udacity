@@ -19,19 +19,17 @@ export default function UnansweredPoll({ question, author }: { question: Questio
 
     return (
         <Card sx={{ width: '100%', mb: 2 }}>
-            <CardHeader sx={{ backgroundColor: '#DCDCEA' }} title={`${author?.name || 'No name'} asks:`} />
-            <CardContent sx={{ display: 'flex' }}>
+            <CardHeader sx={{ backgroundColor: '#DCDCEA' }} title={`${author?.name || 'No name'} asks:`} variant="h6" component={'div'}/>
+            <CardContent sx={{ display: 'flex' }} >
                 <Avatar
                     sx={{ width: 150, height: 150, mr: 2 }}
                     src={author?.avatarURL || DEFAULT_IMAGE}
                 />
                 <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'space-between' }}>
-                    <Typography sx={{ fontWeight: '600' }}>
+                    <Typography sx={{ fontWeight: '600' }} component={'div'} >
                         Would you rather:
                     </Typography>
-                    <Typography
-                        sx={{ alignSelf: 'center' }}
-                    >
+                    <Typography sx={{ alignSelf: 'center' }} component={'div'}>
                         {question?.optionOne?.text} <br /> or...
                     </Typography>
                     <Button

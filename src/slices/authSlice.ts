@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../app/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface AuthState {
   isAuthed: Boolean,
@@ -23,9 +22,7 @@ export const authSlice = createSlice({
       state.userId = initialState.userId;
       state.isAuthed = initialState.isAuthed;
     }
-  },
-  extraReducers: (builder) => {
-  },
+  }
 });
 
 export const { setUserAuthed, logout } = authSlice.actions;

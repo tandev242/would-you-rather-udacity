@@ -10,7 +10,6 @@ import {
     FormControlLabel,
     FormControl,
     Radio,
-    Divider,
     Avatar
 } from '@mui/material';
 import { User, Question } from '../constants';
@@ -54,7 +53,7 @@ export default function PollQuestion(props: PropsType) {
                             Would you rather:
                         </Typography>
                         <RadioGroup
-                            defaultValue={option}
+                            value={option}
                             name="radio-buttons-group"
                             onChange={(e) => setOption((e.target as HTMLInputElement).value)}
                             sx={{ pl: 3 }}

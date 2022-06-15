@@ -48,20 +48,16 @@ export default function Home({ user }: { user: User }) {
             </AppBar>
             <TabPanel value={value} index={0} dir={theme.direction}>
                 {
-                    Object.values(questions).map(question => {
-                        if (!isQuestionAnswered(question.id)) {
-                            return <UnansweredPoll key={question.id} question={question} author={getAuthorByPoll(question.author)} />
-                        }
-                    })
+                    Object.values(questions).map(question => (
+                        !isQuestionAnswered(question.id) && <UnansweredPoll key={question.id} question={question} author={getAuthorByPoll(question.author)} />
+                    ))
                 }
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
                 {
-                    Object.values(questions).map(question => {
-                        if (isQuestionAnswered(question.id)) {
-                            return <AnsweredPoll key={question.id} question={question} author={getAuthorByPoll(question.author)} />
-                        }
-                    })
+                    Object.values(questions).map(question => (
+                        isQuestionAnswered(question.id) && <AnsweredPoll key={question.id} question={question} author={getAuthorByPoll(question.author)} />
+                    ))
                 }
             </TabPanel>
         </Card>
@@ -87,7 +83,7 @@ function TabPanel(props: TabPanelProps) {
         >
             {value === index && (
                 <Box sx={{ p: 2 }}>
-                    <Typography>{children}</Typography>
+                    <Typography component={'div'}>{children}</Typography>
                 </Box>
             )}
         </div>

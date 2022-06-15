@@ -7,10 +7,10 @@ import {
     Typography
 } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import { DEFAULT_IMAGE, User } from '../constants';
+import { DEFAULT_IMAGE, User, Question } from '../constants';
 import { useNavigate } from 'react-router-dom';
 
-export default function AnsweredPoll({ question, author }: { question: any, author: User }) {
+export default function AnsweredPoll({ question, author }: { question: Question, author: User }) {
     const navigate = useNavigate();
 
     return (

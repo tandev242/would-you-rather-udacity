@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface UserState {
-  users: Object;
-  isLoading: Boolean
+  users: Object
 }
 
 const initialState: UserState = {
-  users: {},
-  isLoading: false
+  users: {}
 };
 
 
@@ -30,9 +28,7 @@ export const UserSlice = createSlice({
         }
       }
     }
-  },
-  extraReducers: (builder) => {
-  },
+  }
 });
 
 export const { receiveUsers, addQuestionToUser } = UserSlice.actions;
