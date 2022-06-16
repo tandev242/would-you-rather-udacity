@@ -64,7 +64,7 @@ let questions = {
   "am8ehyc8byjqgar0jgpub9": {
     id: 'am8ehyc8byjqgar0jgpub9',
     author: 'sarahedo',
-    timestamp: 1488579767190,
+    timestamp: 1655382779143,
     optionOne: {
       votes: [],
       text: 'be telekinetic',
@@ -90,7 +90,7 @@ let questions = {
   "vthrdm985a262al8qx3do": {
     id: 'vthrdm985a262al8qx3do',
     author: 'tylermcginnis',
-    timestamp: 1489579767190,
+    timestamp: 1655382769486,
     optionOne: {
       votes: ['tylermcginnis'],
       text: 'find $50 yourself',
@@ -103,7 +103,7 @@ let questions = {
   "xj352vofupe1dqz9emx13r": {
     id: 'xj352vofupe1dqz9emx13r',
     author: 'johndoe',
-    timestamp: 1493579767190,
+    timestamp: 1655382759552,
     optionOne: {
       votes: ['johndoe'],
       text: 'write JavaScript',

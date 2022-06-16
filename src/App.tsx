@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import Home from './components/Home';
@@ -23,8 +23,11 @@ function App() {
   }
 
   useEffect(() => {
-    dispatch(handleInitialData())
-  }, [])
+    function fetchInitialData() {
+      dispatch(handleInitialData());
+    }
+    fetchInitialData();
+  },[])
 
   return (
     <Router>
@@ -35,7 +38,7 @@ function App() {
         <Routes>
           <Route path="/" element={isAuthed ? <Home user={getUserById()} /> : <Login />} />
           <Route path="/add" element={<PrivateRoute element={<NewPoll user={getUserById()} />} />} />
-          <Route path="/leader-board" element={<PrivateRoute element={<LeaderBoard />} />} />
+          <Route path="/leaderboard" element={<PrivateRoute element={<LeaderBoard />} />} />
           <Route path="/questions/:id" element={<PrivateRoute element={<PollPage user={getUserById()} />} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

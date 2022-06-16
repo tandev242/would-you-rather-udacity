@@ -7,50 +7,43 @@ import {
     Avatar
 } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from '../app/hooks';
 import { logout } from '../slices/authSlice';
 import { User } from '../constants';
-
-interface LinkTabProps {
-    label: string;
-    href: string;
-}
-
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 export default function NavTabs({ user }: { user: User }) {
     const [value, setValue] = React.useState(0);
-    const dispatch = useAppDispatch();
+    const location = useLocation();
     const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if(location.pathname === '/') {
+            setValue(0)
+        }else if(location.pathname === '/add') {
+            setValue(1)
+        }else if(location.pathname === '/leaderboard') {
+            setValue(2)
+        }
+    }, [location.pathname])
+    const dispatch = useAppDispatch();
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
     const handleLogout = () => {
         dispatch(logout());
+        navigate('/');
     };
 
-    function LinkTab(props: LinkTabProps) {
-        return (
-            <Tab
-                component="a"
-                onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-                    event.preventDefault();
-                    navigate(props.href);
-                }}
-                {...props}
-            />
-        );
-    }
-
     return (
-        <Box sx={{ height: '10%', width: '100%', display: 'flex', justifyContent: 'space-between'}}>
+        <Box sx={{ height: '10%', width: '100%', display: 'flex', justifyContent: 'space-between' }}>
             <Tabs value={value} onChange={handleChange}>
-                <LinkTab label="Home" href="" />
-                <LinkTab label="New Poll" href="/add" />
-                <LinkTab label="Leader Board" href="/leader-board" />
+                <Tab label="Home" to="/" component={NavLink} />
+                <Tab label="New Poll" to="/add" component={NavLink} />
+                <Tab label="Leader Board" to="/leaderboard" component={NavLink}/>
             </Tabs>
-            <div style={{ display: 'flex',alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Avatar
                     sx={{ m: 1, width: 30, height: 30 }}
                     src={user.avatarURL || ''}

@@ -17,10 +17,12 @@ import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { RootState } from '../app/store';
 import { DEFAULT_LOGIN_IMAGE } from '../constants';
 import { setUserAuthed } from '../slices/authSlice';
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const theme = useTheme();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = React.useState({
     id: '',
     name: '',
@@ -35,6 +37,7 @@ export default function Login() {
     event.preventDefault();
     if(selectedUser.id){
       dispatch(setUserAuthed(selectedUser.id));
+      navigate(-1);
     }else{
       alert("Please select a friend !")
     }

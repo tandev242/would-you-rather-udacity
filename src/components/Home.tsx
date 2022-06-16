@@ -32,6 +32,9 @@ export default function Home({ user }: { user: User }) {
         return Object.values(users).find(user => user.id === authorId)
     }
 
+    const unansweredQuestions = Object.values(questions).sort((a, b) => b.timestamp - a.timestamp).filter(question => !isQuestionAnswered(question.id));
+    const answeredQuestions = Object.values(questions).sort((a, b) => b.timestamp - a.timestamp).filter(question => isQuestionAnswered(question.id));
+
     return (
         <Card sx={{ bgcolor: 'background.paper', width: 500, m: 3 }}>
             <AppBar position="static" color='secondary'>
@@ -48,14 +51,14 @@ export default function Home({ user }: { user: User }) {
             </AppBar>
             <TabPanel value={value} index={0} dir={theme.direction}>
                 {
-                    Object.values(questions).map(question => (
+                    unansweredQuestions.map(question => (
                         !isQuestionAnswered(question.id) && <UnansweredPoll key={question.id} question={question} author={getAuthorByPoll(question.author)} />
                     ))
                 }
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
                 {
-                    Object.values(questions).map(question => (
+                    answeredQuestions.map(question => (
                         isQuestionAnswered(question.id) && <AnsweredPoll key={question.id} question={question} author={getAuthorByPoll(question.author)} />
                     ))
                 }

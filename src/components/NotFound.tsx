@@ -20,10 +20,10 @@ export default function NotFound() {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    onClick={() => navigate(-1)}
+                    onClick={() => navigate('/')}
                     sx={{ mt: 2, p: 1 }}
                 >
-                    GO BACK
+                    BACK TO HOME
                 </Button>
             </Box>
         </ Box>
